@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Binary_Tree_Program
 {
-    public class Binary_Tree<T> where T:IComparable
+    class BinarySearchTree<T> where T : IComparable
     {
         Node<T> Root;
         Node<T> Current;
+        int count = 0;
         public void InsertData(T data)
         {
             if (Root == null)
             {
                 this.Root = new Node<T>(data);
                 this.Current = Root;
+                count++;
                 return;
             }
             if (this.Current.NodeValue.CompareTo(data) > 0)
@@ -22,6 +25,7 @@ namespace Binary_Tree_Program
                 {
                     this.Current.LeftNode = new Node<T>(data);
                     this.Current = Root;
+                    count++;
                 }
                 else
                 {
@@ -35,6 +39,7 @@ namespace Binary_Tree_Program
                 {
                     this.Current.RightNode = new Node<T>(data);
                     this.Current = Root;
+                    count++;
                 }
                 else
                 {
@@ -55,6 +60,10 @@ namespace Binary_Tree_Program
                 Console.WriteLine(" " + node.NodeValue);
                 Display(node.RightNode);
             }
+        }
+        public int Size()
+        {
+            return count;
         }
     }
 }
